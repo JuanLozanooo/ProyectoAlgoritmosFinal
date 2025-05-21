@@ -1,0 +1,657 @@
+/* Variables */
+:root {
+    --primary-color: #2c3e50;
+    --secondary-color: #3498db;
+    --error-color: #e74c3c;
+    --success-color: #2ecc71;
+    --background-color: #f5f6fa;
+    --card-background: #ffffff;
+}
+
+/* Estilos generales */
+body {
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+    margin: 0;
+    padding: 0;
+    background-color: var(--background-color);
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+/* Navegación */
+nav {
+    background-color: var(--primary-color);
+    padding: 1rem 0;
+    margin-bottom: 2rem;
+}
+
+nav a {
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+/* Formularios */
+.form-card {
+    background-color: var(--card-background);
+    padding: 2rem;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    margin-bottom: 2rem;
+}
+
+.form-group {
+    margin-bottom: 1rem;
+}
+
+label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: bold;
+}
+
+input {
+    width: 100%;
+    padding: 0.5rem;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+
+/* Botones */
+.button {
+    display: inline-block;
+    padding: 0.5rem 1rem;
+    background-color: var(--secondary-color);
+    color: white;
+    text-decoration: none;
+    border-radius: 4px;
+    border: none;
+    cursor: pointer;
+    margin-right: 0.5rem;
+}
+
+.button:hover {
+    opacity: 0.9;
+}
+
+.button-group {
+    margin-top: 1rem;
+}
+
+/* Tablas */
+.table-container {
+    background-color: var(--card-background);
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    overflow-x: auto;
+    margin-bottom: 2rem;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+th, td {
+    padding: 1rem;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
+
+th {
+    background-color: var(--primary-color);
+    color: white;
+}
+
+/* Paginación */
+.pagination {
+    text-align: center;
+    margin: 2rem 0;
+}
+
+.pagination span {
+    margin: 0 1rem;
+}
+
+/* Mensajes de error */
+.error {
+    background-color: var(--error-color);
+    color: white;
+    padding: 1rem;
+    border-radius: 4px;
+    margin-bottom: 1rem;
+}
+
+/* Tarjetas */
+.recommendations-card,
+.error-card {
+    background-color: var(--card-background);
+    padding: 2rem;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .container {
+        padding: 0 10px;
+    }
+
+    .form-card,
+    .recommendations-card,
+    .error-card {
+        padding: 1rem;
+    }
+
+    th, td {
+        padding: 0.5rem;
+    }
+}
+/* Estilos para la página de inicio */
+.home-container {
+    text-align: center;
+    padding: 4rem 1rem;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.home-container h1 {
+    color: var(--primary-color);
+    margin-bottom: 1rem;
+    font-size: 2.5rem;
+}
+
+.intro-text {
+    color: #666;
+    font-size: 1.2rem;
+    margin-bottom: 2rem;
+}
+
+.primary-button {
+    font-size: 1.2rem;
+    padding: 0.8rem 2rem;
+    background-color: var(--primary-color);
+}
+
+.primary-button:hover {
+    background-color: var(--secondary-color);
+    transform: translateY(-2px);
+    transition: all 0.3s ease;
+}
+/* Estilos adicionales para el formulario en home */
+.card {
+    background: white;
+    padding: 2rem;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    margin-bottom: 2rem;
+}
+
+.form-row {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 1rem;
+}
+
+@media (max-width: 768px) {
+    .form-row {
+        flex-direction: column;
+        gap: 0;
+    }
+}
+
+.form-group {
+    flex: 1;
+}
+
+.search-form {
+    max-width: 400px;
+    margin: 0 auto;
+}
+
+.create-form {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.checkbox-group {
+    display: flex;
+    align-items: center;
+}
+
+.checkbox-group input[type="checkbox"] {
+    width: auto;
+    margin-right: 0.5rem;
+}
+
+.checkboxes {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1rem;
+    margin: 1rem 0;
+}
+
+select {
+    width: 100%;
+    padding: 0.5rem;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+
+.home-container {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 2rem;
+}
+/* Estilos para la vista de detalles */
+.detail-container, .recommendations-container {
+    max-width: 1000px;
+    margin: 2rem auto;
+    padding: 0 1rem;
+}
+
+.detail-card, .recommendations-card {
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    padding: 2rem;
+}
+
+.detail-sections {
+    display: grid;
+    gap: 2rem;
+    margin: 2rem 0;
+}
+
+.detail-section {
+    background: #f8f9fa;
+    padding: 1.5rem;
+    border-radius: 8px;
+}
+
+.detail-section h2 {
+    color: var(--primary-color);
+    margin-bottom: 1rem;
+    font-size: 1.25rem;
+}
+
+.detail-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1rem;
+}
+
+.detail-item {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.label {
+    color: #666;
+    font-size: 0.9rem;
+}
+
+.value {
+    font-size: 1.1rem;
+    font-weight: 500;
+}
+
+.value.warning {
+    color: #dc3545;
+}
+
+.habits-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 1rem;
+}
+
+.habit-item {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.75rem;
+    background: white;
+    border-radius: 6px;
+    border: 1px solid #dee2e6;
+}
+
+.habit-item.active {
+    background: var(--primary-color);
+    color: white;
+}
+
+.habit-item i {
+    font-size: 1.2rem;
+}
+
+/* Estilos para recomendaciones */
+.recommendations-content {
+    margin: 2rem 0;
+}
+
+.status-indicators {
+    display: flex;
+    gap: 1rem;
+    margin: 1rem 0;
+}
+
+.status-item {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 1rem;
+    border-radius: 6px;
+    background: #f8f9fa;
+}
+
+.status-item.high {
+    background: #dc3545;
+    color: white;
+}
+
+.status-item.medium {
+    background: #ffc107;
+    color: #000;
+}
+
+.status-item.low {
+    background: #28a745;
+    color: white;
+}
+
+.recommendations-list, .urgent-list {
+    list-style: none;
+    padding: 0;
+}
+
+.recommendation-item, .urgent-item {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.75rem;
+    border-bottom: 1px solid #dee2e6;
+}
+
+.urgent-item {
+    color: #dc3545;
+}
+
+.detail-actions, .recommendations-actions {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    margin-top: 2rem;
+}
+
+.primary-button {
+    background: var(--primary-color);
+    color: white;
+}
+
+.secondary-button {
+    background: var(--secondary-color);
+    color: white;
+}
+.error-container {
+    max-width: 600px;
+    margin: 3rem auto;
+    padding: 0 1rem;
+}
+
+.error-card {
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    padding: 2rem;
+    text-align: center;
+}
+
+.error-icon {
+    font-size: 4rem;
+    color: #dc3545;
+    margin-bottom: 1rem;
+}
+
+.error-card h1 {
+    color: #dc3545;
+    margin-bottom: 1rem;
+}
+
+.error-card p {
+    color: #666;
+    margin-bottom: 2rem;
+}
+
+.error-actions {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+}
+.success-message {
+    background: #d4edda;
+    color: #155724;
+    padding: 1rem;
+    border-radius: 6px;
+    margin: 1rem 0;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.patient-summary {
+    background: #f8f9fa;
+    padding: 1.5rem;
+    border-radius: 8px;
+    margin: 1.5rem 0;
+}
+
+.summary-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 1rem;
+    margin-top: 1rem;
+}
+
+.risk-indicator {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.75rem 1.5rem;
+    border-radius: 6px;
+    font-weight: 500;
+    margin: 1rem 0;
+}
+
+.risk-indicator.high {
+    background: #dc3545;
+    color: white;
+}
+
+.risk-indicator.medium {
+    background: #ffc107;
+    color: #000;
+}
+
+.risk-indicator.low {
+    background: #28a745;
+    color: white;
+}
+
+.recommendation-section {
+    margin: 2rem 0;
+}
+
+.recommendation-section h2 {
+    color: var(--primary-color);
+    margin-bottom: 1rem;
+}
+.key-factors {
+    margin: 1rem 0;
+}
+
+.factor-item {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 0.5rem;
+}
+
+.factor-name {
+    width: 120px;
+}
+
+.factor-bar {
+    height: 8px;
+    background: var(--primary-color);
+    border-radius: 4px;
+}
+
+.factor-value {
+    min-width: 50px;
+    text-align: right;
+}
+
+.metrics-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1rem;
+    margin: 1rem 0;
+}
+
+.metric-item {
+    background: #f8f9fa;
+    padding: 1rem;
+    border-radius: 8px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+.metric-label {
+    color: #666;
+    font-size: 0.9rem;
+}
+
+.metric-value {
+    font-size: 1.5rem;
+    font-weight: 500;
+    color: var(--primary-color);
+    margin: 0.5rem 0;
+}
+
+.metric-category {
+    font-size: 0.9rem;
+    color: #666;
+}
+
+.recommendations-list {
+    list-style: none;
+    padding: 0;
+}
+
+.recommendation-item {
+    padding: 0.75rem;
+    border-bottom: 1px solid #dee2e6;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.recommendation-item:last-child {
+    border-bottom: none;
+}
+.success-container {
+    max-width: 800px;
+    margin: 2rem auto;
+    padding: 0 1rem;
+}
+
+.success-card {
+    background: white;
+    border-radius: 8px;
+    padding: 2rem;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    text-align: center;
+}
+
+.success-icon {
+    color: #4CAF50;
+    margin-bottom: 1rem;
+}
+
+.success-icon svg {
+    width: 64px;
+    height: 64px;
+}
+
+.record-summary {
+    margin: 2rem 0;
+    padding: 1rem;
+    background: #f5f5f5;
+    border-radius: 8px;
+}
+
+.summary-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1rem;
+    margin-top: 1rem;
+}
+
+.summary-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 0.5rem;
+}
+
+.summary-item .label {
+    font-weight: bold;
+    color: #666;
+    margin-bottom: 0.25rem;
+}
+
+.summary-item .value {
+    font-size: 1.1rem;
+    color: #333;
+}
+
+.action-buttons {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    margin-top: 2rem;
+}
+
+.button {
+    padding: 0.75rem 1.5rem;
+    border-radius: 4px;
+    text-decoration: none;
+    font-weight: 500;
+    transition: all 0.2s;
+}
+
+.button.primary {
+    background: #1976D2;
+    color: white;
+}
+
+.button.secondary {
+    background: #4CAF50;
+    color: white;
+}
+
+.button:hover {
+    opacity: 0.9;
+    transform: translateY(-1px);
+}

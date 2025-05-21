@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+
+{% block title %}Error{% endblock %}
+
+{% block content %}
+<div class="error-container">
+    <div class="error-card">
+        <i class="fas fa-exclamation-circle error-icon"></i>
+        <h1>Error</h1>
+        <p>{{ error_message }}</p>
+        <div class="error-actions">
+            <a href="/records" class="button">Volver a Registros</a>
+            <a href="/" class="button">Ir al Inicio</a>
+        </div>
+    </div>
+</div>
+{% endblock %}

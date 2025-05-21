@@ -1,0 +1,129 @@
+{% extends "base.html" %}
+
+{% block title %}Inicio{% endblock %}
+
+{% block content %}
+<div class="home-container">
+    <h1>Sistema de Salud Cardio</h1>
+    
+    <!-- Búsqueda por ID -->
+    <div class="card">
+        <h2>Buscar Registro</h2>
+        <form class="search-form" onsubmit="buscarRegistro(event)">
+            <div class="form-group">
+                <label for="record_id">ID del Registro:</label>
+                <input type="number" id="record_id" name="record_id" required min="1">
+            </div>
+            <button type="submit" class="button">Buscar</button>
+        </form>
+    </div>
+
+    <!-- Formulario de Creación -->
+    <div class="card">
+        <h2>Nuevo Registro de Salud</h2>
+        <form action="/records/" method="post" class="create-form">
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="age">Edad:</label>
+                    <input type="number" id="age" name="age" required min="1" max="150">
+                </div>
+                <div class="form-group">
+                    <label for="gender">Género:</label>
+                    <select id="gender" name="gender" required>
+                        <option value="0">Mujer</option>
+                        <option value="1">Hombre</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="height">Altura (metros):</label>
+                    <input type="number" id="height" name="height" required step="0.01" min="0" max="3">
+                </div>
+                <div class="form-group">
+                    <label for="weight">Peso (kg):</label>
+                    <input type="number" id="weight" name="weight" required min="20" max="300">
+                </div>
+            </div>
+
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="ap_hi">Presión Sistólica:</label>
+                    <input type="number" id="ap_hi" name="ap_hi" required min="50" max="300">
+                </div>
+                <div class="form-group">
+                    <label for="ap_lo">Presión Diastólica:</label>
+                    <input type="number" id="ap_lo" name="ap_lo" required min="30" max="200">
+                </div>
+            </div>
+
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="cholesterol">Nivel de Colesterol:</label>
+                    <select id="cholesterol" name="cholesterol" required>
+                        <option value="1">Normal</option>
+                        <option value="2">Alto</option>
+                        <option value="3">Muy alto</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="gluc">Nivel de Glucosa:</label>
+                    <select id="gluc" name="gluc" required>
+                        <option value="1">Normal</option>
+                        <option value="2">Alto</option>
+                        <option value="3">Muy alto</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="form-row checkboxes">
+                <div class="form-group checkbox-group">
+                    <label>
+                        <input type="hidden" name="smoke" value="0">
+                        <input type="checkbox" id="smoke" name="smoke" value="1">
+                        ¿Fuma?
+                    </label>
+                </div>
+                <div class="form-group checkbox-group">
+                    <label>
+                        <input type="hidden" name="alco" value="0">
+                        <input type="checkbox" id="alco" name="alco" value="1">
+                        ¿Consume alcohol?
+                    </label>
+                </div>
+                <div class="form-group checkbox-group">
+                    <label>
+                        <input type="hidden" name="active" value="0">
+                        <input type="checkbox" id="active" name="active" value="1">
+                        ¿Físicamente activo?
+                    </label>
+                </div>
+                <div class="form-group checkbox-group">
+                    <label>
+                        <input type="hidden" name="cardio" value="0">
+                        <input type="checkbox" id="cardio" name="cardio" value="1">
+                        ¿Antecedentes cardiovasculares?
+                    </label>
+                </div>
+            </div>
+
+            <button type="submit" class="button primary-button">Crear Registro</button>
+        </form>
+    </div>
+
+<script>
+function buscarRegistro(event) {
+    event.preventDefault();
+    const id = document.getElementById('record_id').value;
+    if (id) {
+        window.location.href = `/records/${id}`;
+    }
+}
+</script>
+
+    <div class="actions">
+        <a href="/records" class="button">Ver Todos los Registros</a>
+    </div>
+</div>
+{% endblock %}

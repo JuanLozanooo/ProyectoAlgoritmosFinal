@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+
+{% block title %}Registro Creado Exitosamente{% endblock %}
+
+{% block content %}
+<div class="success-container">
+    <div class="success-card">
+        <div class="success-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+                <polyline points="22 4 12 14.01 9 11.01"></polyline>
+            </svg>
+        </div>
+        <h1>¡Registro Creado Exitosamente!</h1>
+        <p>El registro ha sido guardado con el ID: <strong>{{ record.id }}</strong></p>
+        
+        <div class="record-summary">
+            <h2>Resumen del Registro</h2>
+            <div class="summary-grid">
+                <div class="summary-item">
+                    <span class="label">Edad:</span>
+                    <span class="value">{{ record.age // 365 }} años</span>
+                </div>
+                <div class="summary-item">
+                    <span class="label">Género:</span>
+                    <span class="value">{% if record.gender == 0 %}Mujer{% else %}Hombre{% endif %}</span>
+                </div>
+                <div class="summary-item">
+                    <span class="label">Altura:</span>
+                    <span class="value">{{ record.height / 100 }} m</span>
+                </div>
+                <div class="summary-item">
+                    <span class="label">Peso:</span>
+                    <span class="value">{{ record.weight }} kg</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="action-buttons">
+            <a href="/records/{{ record.id }}" class="button primary">Ver Detalles</a>
+            <a href="/records/{{ record.id }}/recommendations" class="button secondary">Ver Recomendaciones</a>
+            <a href="/static" class="button">Volver al Inicio</a>
+        </div>
+    </div>
+</div>
+{% endblock %}

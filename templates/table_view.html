@@ -1,0 +1,67 @@
+{% extends "base.html" %}
+
+{% block title %}Registros{% endblock %}
+
+{% block content %}
+    <h1>Registros de Presión Arterial</h1>
+
+    {% if error %}
+        <div class="error">{{ error }}</div>
+    {% endif %}
+
+    <div class="table-container">
+        <table>
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Edad</th>
+                    <th>Género</th>
+                    <th>Presión Sistólica</th>
+                    <th>Presión Diastólica</th>
+                    <th>Colesterol</th>
+                    <th>Glucosa</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for record in records %}
+                <tr>
+                    <td>{{ record.id }}</td>
+                    <td>{{ record.age|days_to_years }} años</td>
+                    <td>{{ "Hombre" if record.gender == 1 else "Mujer" }}</td>
+                    <td>{{ record.ap_hi }}</td>
+                    <td>{{ record.ap_lo }}</td>
+                    <td>
+                        {% if record.cholesterol == 1 %}Normal
+                        {% elif record.cholesterol == 2 %}Alto
+                        {% else %}Muy alto{% endif %}
+                    </td>
+                    <td>
+                        {% if record.gluc == 1 %}Normal
+                        {% elif record.gluc == 2 %}Alto
+                        {% else %}Muy alto{% endif %}
+                    </td>
+                    <td>
+                        <a href="/records/{{ record.id }}" class="button">Ver</a>
+                        <a href="/records/{{ record.id }}/recommendations" class="button">Recomendaciones</a>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+    <div class="pagination">
+        {% if page > 1 %}
+            <a href="/records?page={{ page-1 }}" class="button">&laquo; Anterior</a>
+        {% endif %}
+        <span>Página {{ page }}</span>
+        {% if records|length == per_page %}
+            <a href="/records?page={{ page+1 }}" class="button">Siguiente &raquo;</a>
+        {% endif %}
+    </div>
+
+    <div class="button-group">
+        <a href="/" class="button">Volver al Inicio</a>
+    </div>
+{% endblock %}

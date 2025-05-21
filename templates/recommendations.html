@@ -1,0 +1,121 @@
+{% extends "base.html" %}
+
+{% block title %}Recomendaciones{% endblock %}
+
+{% block content %}
+<div class="recommendations-container">
+    <div class="recommendations-card">
+        <h1>Recomendaciones de Salud</h1>
+        <div class="recommendations-header">
+            <p>Basado en el registro #{{ record_id }}</p>
+        </div>
+
+        <div class="patient-summary">
+            <h2>Datos del Paciente</h2>
+            <div class="summary-grid">
+                <div class="summary-item">
+                    <span class="label">Edad:</span>
+                    <span class="value">{{ record.age|days_to_years }} años</span>
+                </div>
+                <div class="summary-item">
+                    <span class="label">Altura:</span>
+                    <span class="value">{{ record.height|cm_to_meters }} m</span>
+                </div>
+                <div class="summary-item">
+                    <span class="label">Peso:</span>
+                    <span class="value">{{ record.weight }} kg</span>
+                </div>
+            </div>
+        </div>
+
+        {% if recommendations %}
+        <div class="recommendations-content">
+            <!-- Nivel de Riesgo -->
+            {% if recommendations.risk_data %}
+            <div class="recommendation-section">
+                <h2>Nivel de Riesgo Cardiovascular</h2>
+                <div class="risk-indicator" style="background-color: {{ recommendations.risk_data.color }}">
+                    <i class="fas fa-heartbeat"></i>
+                    <span>{{ recommendations.risk_data.level }}</span>
+                </div>
+            </div>
+            {% endif %}
+
+            <!-- Factores Clave -->
+            {% if recommendations.key_factors %}
+            <div class="recommendation-section">
+                <h2>Factores Clave</h2>
+                <div class="key-factors">
+                    {% for factor in recommendations.key_factors %}
+                    <div class="factor-item">
+                        <span class="factor-name">
+                            {% if factor.factor == 'age' %}
+                            Edad: {{ factor.value|days_to_years }} años
+                            {% elif factor.factor == 'height' %}
+                            Altura: {{ factor.value|cm_to_meters }} m
+                            {% else %}
+                            {{ factor.factor }}: {{ factor.value }}
+                            {% endif %}
+                        </span>
+                        <div class="factor-bar" style="width: {{ factor.importance * 100 }}%"></div>
+                        <span class="factor-importance">{{ (factor.importance * 100)|round(1) }}%</span>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+            {% endif %}
+
+            <!-- Métricas de Salud -->
+            {% if recommendations.health_metrics %}
+            <div class="recommendation-section">
+                <h2>Métricas de Salud</h2>
+                <div class="metrics-grid">
+                    <div class="metric-item">
+                        <span class="metric-label">IMC</span>
+                        <span class="metric-value">{{ recommendations.health_metrics.imc|round(1) }}</span>
+                        <span class="metric-category">{{ recommendations.health_metrics.imc_category }}</span>
+                    </div>
+                    <div class="metric-item">
+                        <span class="metric-label">Presión Arterial</span>
+                        <span class="metric-value">{{ recommendations.health_metrics.blood_pressure }}</span>
+                    </div>
+                    <div class="metric-item">
+                        <span class="metric-label">Edad Metabólica</span>
+                        <span class="metric-value">{{ recommendations.health_metrics.metabolic_age|days_to_years }} años</span>
+                    </div>
+                </div>
+            </div>
+            {% endif %}
+
+            <!-- Recomendaciones -->
+            {% if recommendations.recommendations %}
+            <div class="recommendation-section">
+                <h2>Recomendaciones Específicas</h2>
+                <ul class="recommendations-list">
+                    {% for rec in recommendations.recommendations %}
+                    <li class="recommendation-item">
+                        {{ rec }}
+                    </li>
+                    {% endfor %}
+                </ul>
+            </div>
+            {% endif %}
+        </div>
+        {% else %}
+        <div class="no-recommendations">
+            <i class="fas fa-exclamation-circle"></i>
+            <p>No se encontraron recomendaciones para este registro.</p>
+        </div>
+        {% endif %}
+
+        <div class="recommendations-actions">
+            <a href="/records/{{ record_id }}" class="button secondary-button">
+                <i class="fas fa-file-medical"></i> Ver Detalles del Registro
+            </a>
+            <a href="/records" class="button">
+                <i class="fas fa-arrow-left"></i> Volver a Registros
+            </a>
+        </div>
+    </div>
+</div>
+{% endblock %}

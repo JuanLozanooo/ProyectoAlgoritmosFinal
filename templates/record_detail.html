@@ -1,0 +1,96 @@
+{% extends "base.html" %}
+
+{% block title %}Detalles del Registro{% endblock %}
+
+{% block content %}
+<div class="detail-container">
+    <div class="detail-card">
+        <h1>Detalles del Registro #{{ record.id }}</h1>
+        
+        <div class="detail-sections">
+            <div class="detail-section">
+                <h2>Información Personal</h2>
+                <div class="detail-grid">
+                    <div class="detail-item">
+                        <span class="label">Edad:</span>
+                        <span class="value">{{ record.age|days_to_years }} años</span>
+                    </div>
+                    <div class="detail-item">
+                        <span class="label">Género:</span>
+                        <span class="value">{{ "Hombre" if record.gender == 1 else "Mujer" }}</span>
+                    </div>
+                    <div class="detail-item">
+                        <span class="label">Altura:</span>
+                        <span class="value">{{ record.height|cm_to_meters }} m</span>
+                    </div>
+                    <div class="detail-item">
+                        <span class="label">Peso:</span>
+                        <span class="value">{{ record.weight }} kg</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="detail-section">
+                <h2>Mediciones</h2>
+                <div class="detail-grid">
+                    <div class="detail-item">
+                        <span class="label">Presión Sistólica:</span>
+                        <span class="value">{{ record.ap_hi }} mmHg</span>
+                    </div>
+                    <div class="detail-item">
+                        <span class="label">Presión Diastólica:</span>
+                        <span class="value">{{ record.ap_lo }} mmHg</span>
+                    </div>
+                    <div class="detail-item">
+                        <span class="label">Colesterol:</span>
+                        <span class="value {% if record.cholesterol > 1 %}warning{% endif %}">
+                            {% if record.cholesterol == 1 %}Normal
+                            {% elif record.cholesterol == 2 %}Alto
+                            {% else %}Muy alto{% endif %}
+                        </span>
+                    </div>
+                    <div class="detail-item">
+                        <span class="label">Glucosa:</span>
+                        <span class="value {% if record.gluc > 1 %}warning{% endif %}">
+                            {% if record.gluc == 1 %}Normal
+                            {% elif record.gluc == 2 %}Alto
+                            {% else %}Muy alto{% endif %}
+                        </span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="detail-section">
+                <h2>Hábitos y Antecedentes</h2>
+                <div class="habits-grid">
+                    <div class="habit-item {% if record.smoke == 1 %}active{% endif %}">
+                        <i class="fas fa-smoking{% if record.smoke == 0 %}-ban{% endif %}"></i>
+                        <span>{{ "Fumador" if record.smoke == 1 else "No fumador" }}</span>
+                    </div>
+                    <div class="habit-item {% if record.alco == 1 %}active{% endif %}">
+                        <i class="fas fa-wine-glass{% if record.alco == 0 %}-alt{% endif %}"></i>
+                        <span>{{ "Consume alcohol" if record.alco == 1 else "No consume alcohol" }}</span>
+                    </div>
+                    <div class="habit-item {% if record.active == 1 %}active{% endif %}">
+                        <i class="fas fa-running"></i>
+                        <span>{{ "Físicamente activo" if record.active == 1 else "Sedentario" }}</span>
+                    </div>
+                    <div class="habit-item {% if record.cardio == 1 %}active{% endif %}">
+                        <i class="fas fa-heart"></i>
+                        <span>{{ "Con antecedentes cardiovasculares" if record.cardio == 1 else "Sin antecedentes cardiovasculares" }}</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="detail-actions">
+            <a href="/records/{{ record.id }}/recommendations" class="button primary-button">
+                <i class="fas fa-clipboard-list"></i> Ver Recomendaciones
+            </a>
+            <a href="/records" class="button secondary-button">
+                <i class="fas fa-arrow-left"></i> Volver a Registros
+            </a>
+        </div>
+    </div>
+</div>
+{% endblock %}
